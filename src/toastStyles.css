@@ -1,0 +1,74 @@
+/* General Toast Styles */
+.custom-toast {
+  font-size: 12px;
+  width: 250px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Specific Styles for the Toast Body */
+.custom-toast .Toastify__toast-body {
+  margin: 0;
+}
+
+/* Custom Progress Bar Height */
+.custom-toast .Toastify__progress-bar {
+  height: 4px;
+}
+
+/* Success Toast Styles */
+.custom-toast.Toastify__toast--success {
+  background-color: #4caf50; /* Green background */
+  color: white;
+}
+
+/* Error Toast Styles */
+.custom-toast.Toastify__toast--error {
+  background-color: #f44336; /* Red background */
+  color: white;
+}
+
+/* Info Toast Styles */
+.custom-toast.Toastify__toast--info {
+  background-color: #2196f3; /* Blue background */
+  color: white;
+}
+
+/* Warning Toast Styles */
+.custom-toast.Toastify__toast--warning {
+  background-color: #ff9800; /* Orange background */
+  color: white;
+}
+
+/* Custom Icons for Different Toast Types */
+.custom-toast.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: white;
+}
+
+.custom-toast.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: white;
+}
+
+.custom-toast.Toastify__toast--info .Toastify__toast-icon svg {
+  fill: white;
+}
+
+.custom-toast.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: white;
+}
+
+/* Optional: Custom Animation for Toast Entrance */
+@keyframes customSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.Toastify__bounce-enter--top-center {
+  animation: customSlideIn 0.5s forwards;
+}

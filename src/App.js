@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import './toastStyles.css';
-import { useWallet } from './useWallet';
-import { isAddress } from 'ethers'; // Updated ethers import for address validation
+import { WalletContext } from './context/WalletContext';  
 
 function App() {
-  const { walletAddress, network, balance, loading, connectWallet, disconnectWallet, fetchBalance } = useWallet();
-  const [inputAddress, setInputAddress] = useState('');
-  const [manualBalance, setManualBalance] = useState('');
+  const { walletAddress, network, balance, loading, connectWallet, disconnectWallet, fetchBalance } = useContext(WalletContext);
+  const [inputAddress, setInputAddress] = useState(''); 
+  const [manualBalance, setManualBalance] = useState(''); 
 
   const handleCheckBalance = async () => {
     if (inputAddress.trim() === '') {
       toast.error('Please enter an Ethereum address.', { className: 'custom-toast' });
-      return;
-    }
-    if (!isAddress(inputAddress)) {
-      toast.error('Invalid Ethereum address. Please check the address and try again.', { className: 'custom-toast' });
       return;
     }
     const balance = await fetchBalance(inputAddress);
@@ -28,9 +23,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Web3Bridge Wallet Connect</h1>
+        
         <button onClick={connectWallet} disabled={loading || walletAddress}>
           {loading ? 'Connecting...' : walletAddress ? 'Connected' : 'Connect Wallet'}
         </button>
+
         {walletAddress && <p>Connected Wallet Address: {walletAddress}</p>}
         {walletAddress && network && <p>Current Network ID: {network}</p>}
         {walletAddress && balance && <p>Balance: {balance}</p>}
